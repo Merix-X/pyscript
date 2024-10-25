@@ -16,46 +16,47 @@
     <input type="number" id="D">
     <button onclick="submit()" type="submit" style="font-size:25px; background-color: blue; color: black; border-radius: 10px">Submit</button>
     <py-script>
-        from random import randrange, choice
+      print("hotovo")
+      from random import randrange, choice
 
-        def vypis_znaky():
-          znaky = ":><?@#$%^&*()_+-=[]{}|;':\",./<>\\"
-          neco3 = choice(znaky)
-          return neco3
+      def vypis_znaky():
+        znaky = ":><?@#$%^&*()_+-=[]{}|;':\",./<>\\"
+        neco3 = choice(znaky)
+        return neco3
 
-        def pismeno_a_cislo():
-          abeceda = "ABCDEFGHCHIJKLMNOPQRSTUVWXYZabcdefgjklmnopqrstuvwxyz012345689"
-          neco = choice(abeceda)
-          return neco
+      def pismeno_a_cislo():
+        abeceda = "ABCDEFGHCHIJKLMNOPQRSTUVWXYZabcdefgjklmnopqrstuvwxyz012345689"
+        neco = choice(abeceda)
+        return neco
 
-        def kombinace(E):
-          display("Speciální znaky jsou tyto:     ><?@#$%^&*:()_+-=[]{}|;':/\",.<>")
-          A2 = Element("A2").value
-          retezec3 = []
-          znaky2 = []
-          for x in range(A2):
-              znak1 = vypis_znaky()
-              znaky2.append(znak1)
+      def kombinace(E):
+        display("Speciální znaky jsou tyto:     ><?@#$%^&*:()_+-=[]{}|;':/\",.<>")
+        A2 = Element("A2").value
+        retezec3 = []
+        znaky2 = []
+        for x in range(A2):
+            znak1 = vypis_znaky()
+            znaky2.append(znak1)
 
-          for w in range(E-A2):
-              string1 = pismeno_a_cislo()
-              retezec3.append(string1)
+        for w in range(E-A2):
+            string1 = pismeno_a_cislo()
+            retezec3.append(string1)
 
-          pocitadlo1 = 0
-          for z in range(A2):
-              B1 = randrange(1, E+1)
-              B1 = B1-1
-              zn1 = znaky2[pocitadlo1]
-              retezec3.insert(B1, zn1)
-              pocitadlo1 = pocitadlo1+1
-          retezec4 = ""
-          rete1 = retezec4.join(retezec3)
-          display(rete1)
-          return rete1
-        def submit():
-          D = Element("D").value
-          heslo5 = kombinace(D)
-          display("Vaše heslo je zde: ", heslo5)
+        pocitadlo1 = 0
+        for z in range(A2):
+            B1 = randrange(1, E+1)
+            B1 = B1-1
+            zn1 = znaky2[pocitadlo1]
+            retezec3.insert(B1, zn1)
+            pocitadlo1 = pocitadlo1+1
+        retezec4 = ""
+        rete1 = retezec4.join(retezec3)
+        display(rete1)
+        return rete1
+      def submit():
+        D = Element("D").value
+        heslo5 = kombinace(D)
+        display("Vaše heslo je zde: ", heslo5)
     </py-script>
   </body>
 </html>
