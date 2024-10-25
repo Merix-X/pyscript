@@ -1,68 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Hello World!</title>
-    <!-- linking to PyScript assets -->
-    <link rel="stylesheet" href="https://pyscript.net/alpha/pyscript.css" />
-    <script defer src="https://pyscript.net/alpha/pyscript.js"></script>
-  </head>
-  <body>
-  <!-- Put Python code inside the <py-script> tag -->
+    <!-- Linking to PyScript assets -->
+    <link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css" />
+    <script defer src="https://pyscript.net/latest/pyscript.js"></script>
+</head>
+<body>
     <h1>Jak dlouhé chcete mít heslo?</h1>
     <input type="number" id="A2">
     <h2>Kolik speciálních znaků, chcete použít v hesle?</h2>
     <input type="number" id="D">
     <button id="myButton" type="submit" style="font-size:25px; background-color: blue; color: black; border-radius: 10px">Submit</button>
+
     <py-script>
-      from random import randrange, choice
-      from pyscript import display, Element, js
+        from random import randrange, choice
 
-      display("generovani")
+        def vypis_znaky():
+            znaky = ":><?@#$%^&*()_+-=[]{}|;':\",./<>\\""
+            neco3 = choice(znaky)
+            return neco3
 
-      def vypis_znaky():
-        znaky = ":><?@#$%^&*()_+-=[]{}|;':\",./<>\\"
-        neco3 = choice(znaky)
-        return neco3
+        def pismeno_a_cislo():
+            abeceda = "ABCDEFGHCHIJKLMNOPQRSTUVWXYZabcdefgjklmnopqrstuvwxyz012345689"
+            neco = choice(abeceda)
+            return neco
 
-      def pismeno_a_cislo():
-        abeceda = "ABCDEFGHCHIJKLMNOPQRSTUVWXYZabcdefgjklmnopqrstuvwxyz012345689"
-        neco = choice(abeceda)
-        return neco
+        def kombinace(E):
+            A2 = int(Element("A2").element.value)
+            retezec3 = []
+            znaky2 = [vypis_znaky() for _ in range(A2)]
+            retezec3 = [pismeno_a_cislo() for _ in range(E - A2)]
+            for zn in znaky2:
+                B1 = randrange(1, E+1) - 1
+                retezec3.insert(B1, zn)
+            rete1 = ''.join(retezec3)
+            Element('myButton').write(rete1)
+            return rete1
 
-      def kombinace(E):
-        display("Speciální znaky jsou tyto:     ><?@#$%^&*:()_+-=[]{}|;':/\",.<>")
-        A2 = Element("A2").value
-        retezec3 = []
-        znaky2 = []
-        for x in range(A2):
-            znak1 = vypis_znaky()
-            znaky2.append(znak1)
+        def submit(event):
+            D = int(Element("D").element.value)
+            kombinace(D)
 
-        for w in range(E-A2):
-            string1 = pismeno_a_cislo()
-            retezec3.append(string1)
-
-        pocitadlo1 = 0
-        for z in range(A2):
-            B1 = randrange(1, E+1)
-            B1 = B1-1
-            zn1 = znaky2[pocitadlo1]
-            retezec3.insert(B1, zn1)
-            pocitadlo1 = pocitadlo1+1
-        retezec4 = ""
-        rete1 = retezec4.join(retezec3)
-        display(rete1)
-        return rete1
-          
-      def submit(event):
-        D = Element("D").value
-        heslo5 = kombinace(D)
-        display("Vaše heslo je zde: ", heslo5)
-          
-      button = js.document.getElementById('myButton')
-      button.addEventListener('click', submit)
+        button = Element("myButton").element
+        button.addEventListener('click', submit)
     </py-script>
-  </body>
+</body>
 </html>
