@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Hello World!</title>
     <!-- linking to PyScript assets -->
-    <link rel="stylesheet" href="https://pyscript.net/releases/2022.12.1/pyscript.css" />
-    <script defer src="https://pyscript.net/releases/2022.12.1/pyscript.js"></script>
+    <link rel="stylesheet" href="https://pyscript.net/alpha/pyscript.css" />
+    <script defer src="https://pyscript.net/alpha/pyscript.js"></script>
   </head>
   <body>
   <!-- Put Python code inside the <py-script> tag -->
@@ -16,8 +16,10 @@
     <input type="number" id="D">
     <button onclick="submit()" type="submit" style="font-size:25px; background-color: blue; color: black; border-radius: 10px">Submit</button>
     <py-script>
-      print("hotovo")
       from random import randrange, choice
+      from pyscript import display, Element
+
+      display("generovani")
 
       def vypis_znaky():
         znaky = ":><?@#$%^&*()_+-=[]{}|;':\",./<>\\"
