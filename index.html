@@ -14,10 +14,10 @@
     <input type="number" id="A2">
     <h2>Kolik speciálních znaků, chcete použít v hesle?</h2>
     <input type="number" id="D">
-    <button onclick="submit()" type="submit" style="font-size:25px; background-color: blue; color: black; border-radius: 10px">Submit</button>
+    <button id="myButton" type="submit" style="font-size:25px; background-color: blue; color: black; border-radius: 10px">Submit</button>
     <py-script>
       from random import randrange, choice
-      from pyscript import display, Element
+      from pyscript import display, Element, js
 
       display("generovani")
 
@@ -55,10 +55,14 @@
         rete1 = retezec4.join(retezec3)
         display(rete1)
         return rete1
-      def submit():
+          
+      def submit(event):
         D = Element("D").value
         heslo5 = kombinace(D)
         display("Vaše heslo je zde: ", heslo5)
+          
+      button = js.document.getElementById('myButton')
+      button.addEventListener('click', submit)
     </py-script>
   </body>
 </html>
